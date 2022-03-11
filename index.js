@@ -20,21 +20,30 @@ Response:
     STATUS pl 200
 */
 
+const fs = require('fs');
+
 switch(true){
     case req.url === '/' && req.method === 'GET':
-        res.setHeader('content-type', 'text/html', 'charset = utf-8');
-        res.writeHead(200);
-        res.end('Cimlap <a href="/login">Bejelentkezes</a>');
+        fs.readFile(__dirname + 'home.html', function(err, data){
+            res.setHeader('content-type', 'text/html', 'charset = utf-8');
+            res.writeHead(200);
+            res.end(data);
+        })
     break;
     case req.url === '/login' && req.method === 'GET':
-        res.setHeader('content-type', 'text/html', 'charset = utf-8');
-        res.writeHead(200);
-        res.end('Bejelentkezes <a href="/">Cimlap</a>');
+        fs.readFile(__dirname + '/login.html', function(err, data){
+            res.setHeader('content-type', 'text/html', 'charset = utf-8');
+            res.writeHead(200);
+            res.end(data);
+        })
     break;
     default:
-        res.setHeader('content-type', 'text/html', 'charset = utf-8');
-        res.writeHead(404);
-        res.end('Az oldal nem talalhato');
+        fs.readFile(__dirname + '/404.html', function(err, data){
+            res.setHeader('content-type', 'text/html', 'charset = utf-8');
+            res.writeHead(404);
+            res.end(data);
+        })
+        
 }
 
 }
