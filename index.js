@@ -22,13 +22,20 @@ Response:
 
 const fs = require('fs');
 
+const rs = fs.createReadStream('./home.html');
+const ws = fs.createWriteStream('./copy.html');
+
 switch(true){
     case req.url === '/' && req.method === 'GET':
         fs.readFile(__dirname + '/home.html', function(err, data){
             res.setHeader('content-type', 'text/html', 'charset = utf-8');
             res.writeHead(200);
             res.end(data);
-        })
+        });
+        rs.on('data', function(data){
+            console.log(data);
+            ws.write(data);
+        });
     break;
     case req.url === '/login' && req.method === 'GET':
         fs.readFile(__dirname + '/login.html', function(err, data){
