@@ -25,19 +25,18 @@ switch(true){
         res.setHeader('content-type', 'text/html', 'charset = utf-8');
         res.writeHead(200);
         res.end('Cimlap <a href="/login">Bejelentkezes</a>');
-    break
-    case req.url == '/login' && req.method === 'GET':
+    break;
+    case req.url === '/login' && req.method === 'GET':
         res.setHeader('content-type', 'text/html', 'charset = utf-8');
         res.writeHead(200);
         res.end('Bejelentkezes <a href="/">Cimlap</a>');
-    break
-
+    break;
+    default:
+        res.setHeader('content-type', 'text/html', 'charset = utf-8');
+        res.writeHead(404);
+        res.end('Az oldal nem talalhato');
 }
 
-
-
-    res.writeHead(200);
-    res.end('Hello, World!');
 }
 
 const server = http.createServer(requestListener);
