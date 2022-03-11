@@ -24,7 +24,7 @@ const fs = require('fs');
 
 switch(true){
     case req.url === '/' && req.method === 'GET':
-        fs.readFile(__dirname + 'home.html', function(err, data){
+        fs.readFile(__dirname + '/home.html', function(err, data){
             res.setHeader('content-type', 'text/html', 'charset = utf-8');
             res.writeHead(200);
             res.end(data);
