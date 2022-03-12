@@ -33,7 +33,7 @@ switch(true){
             res.end(data);
         });
         rs.on('data', function(data){
-            console.log(data);
+            console.log(data.json());
         });
     break;
     case req.url === '/login' && req.method === 'GET':
