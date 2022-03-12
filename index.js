@@ -22,8 +22,8 @@ Response:
 
 const fs = require('fs');
 
-const rs = fs.createReadStream('./home.html');
-const ws = fs.createWriteStream('./copy.html');
+const rs = fs.createReadStream('./qrcodes.json');
+const ws = fs.createWriteStream('./copy.json');
 
 switch(true){
     case req.url === '/' && req.method === 'GET':
@@ -34,7 +34,6 @@ switch(true){
         });
         rs.on('data', function(data){
             console.log(data);
-            ws.write(data);
         });
     break;
     case req.url === '/login' && req.method === 'GET':
