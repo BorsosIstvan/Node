@@ -32,15 +32,26 @@ switch(true){
             res.writeHead(200);
             res.end(data);
         });
-        rs.on('data', function(data){
-            console.log(data);
-        });
     break;
     case req.url === '/login' && req.method === 'GET':
         fs.readFile(__dirname + '/login.html', function(err, data){
             res.setHeader('content-type', 'text/html', 'charset = utf-8');
             res.writeHead(200);
             res.end(data);
+        })
+    break;
+    case req.url === '/clients' && req.method === 'GET':
+        fs.readFile(__dirname + '/clients.html', function(err, data){
+            res.setHeader('content-type', 'text/html', 'charset = utf-8');
+            res.writeHead(200);
+            res.end(data);
+        fs.readFile(__dirname + '/qrcodes.json', function(err, qrcodes){
+            var qrContent = "";
+            for(qrcode of qrcodes){
+                qrContent += `<a>${qrcode.name}</a>`;
+            }
+            document.getElementById('clist').innerHTML = qrContent;
+        })
         })
     break;
     default:
