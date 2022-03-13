@@ -41,15 +41,10 @@ switch(true){
         })
     break;
     case req.url === '/clients' && req.method === 'GET':
-        fs.readFile(__dirname + '/clients.html', function(err, data){
+        fs.readFile(__dirname + '/qrcodes.json', function(err, data){
             res.setHeader('content-type', 'text/html', 'charset = utf-8');
             res.writeHead(200);
             res.end(data);
-        fs.readFile(__dirname + '/qrcodes.json', function(err, qrcodes){
-            res.setHeader('content-type', 'text/html', 'charset = utf-8');
-            res.writeHead(200);
-            res.end(qrcodes);
-        })
         })
     break;
     default:
