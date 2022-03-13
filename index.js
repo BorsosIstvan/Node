@@ -1,62 +1,32 @@
-console.log('Hello word');
-
-// server
-
 const http = require('http');
-
-const requestListener = function(req, res) {
-
-/*
-Request:
-    URL pl http://poci.n-soft.net:8080
-    METHOD pl GET, POST, DELETE, PATCH, PUT
-    QUERY parameterek 
-    BODY 
-    HEADER pl "content-type: application/json"
-
-Response:
-    HEADER
-    BODY
-    STATUS pl 200
-*/
-
 const fs = require('fs');
 
-const rs = fs.createReadStream('./qrcodes.json');
-const ws = fs.createWriteStream('./copy.json');
+const server = http.createServer(function(req, res){
 
-switch(true){
-    case req.url === '/' && req.method === 'GET':
-        fs.readFile(__dirname + '/home.html', function(err, data){
-            res.setHeader('content-type', 'text/html', 'charset = utf-8');
-            res.writeHead(200);
-            res.end(data);
-        });
-    break;
-    case req.url === '/login' && req.method === 'GET':
-        fs.readFile(__dirname + '/login.html', function(err, data){
-            res.setHeader('content-type', 'text/html', 'charset = utf-8');
-            res.writeHead(200);
-            res.end(data);
-        })
-    break;
-    case req.url === '/clients' && req.method === 'GET':
-        fs.readFile(__dirname + '/qrcodes.json', function(err, data){
-//            res.setHeader('content-type', 'application/json', 'charset = utf-8');
-            res.writeHead(200);
-            res.end(data);
-        })
-    break;
-    default:
-        fs.readFile(__dirname + '/404.html', function(err, data){
-            res.setHeader('content-type', 'text/html', 'charset = utf-8');
-            res.writeHead(404);
-            res.end(data);
-        })
-        
-}
+    // Router
+    switch(true){
+        case req.url === '/' && req.method ==='GET':
+            fs.readFile('./views/home.html', (err, file) =>{
+                res.setHeader('content-type', 'text/html');
+                res.end(file);
+            });
+            break;
+        case req.url === '/script.js' && req.method ==='GET':
+            fs.readFile('./public/script.js', (err, file) =>{
+                res.setHeader('content-type', 'application/javascript')
+                res.end(file);
+            });
+            break;
+        case req.url === '/phones' && req.method ==='GET':
+            fs.readFile('./qrcodes.json', (err, file) =>{
+                res.setHeader('content-type', 'application/json')
+                res.end(file);
+            });
+             break;
+        default:
+            res.end('404');
 
-}
+    }
 
-const server = http.createServer(requestListener);
-server.listen(8080);
+});
+server.listener(8080);
