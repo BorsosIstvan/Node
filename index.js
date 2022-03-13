@@ -46,11 +46,7 @@ switch(true){
             res.writeHead(200);
             res.end(data);
         fs.readFile(__dirname + '/qrcodes.json', function(err, qrcodes){
-            var qrContent = "";
-            for(qrcode of qrcodes){
-                qrContent += `<a>${qrcode.name}</a>`;
-            }
-            document.getElementById('clist').innerHTML = qrContent;
+            res.writeBody(qrcodes);
         })
         })
     break;
