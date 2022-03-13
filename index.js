@@ -35,7 +35,7 @@ switch(true){
     break;
     case req.url === '/login' && req.method === 'GET':
         fs.readFile(__dirname + '/login.html', function(err, data){
-            res.setHeader('content-type', 'text/html', 'charset = utf-8');
+            res.setHeader('content-type', 'text/html', 'charset = utf-8','Access-Control-Allow-Origin');
             res.writeHead(200);
             res.end(data);
         })
