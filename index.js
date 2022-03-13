@@ -44,8 +44,7 @@ switch(true){
         fs.readFile(__dirname + '/qrcodes.json', function(err, data){
             res.setHeader('content-type', 'text/html', 'charset = utf-8');
             res.writeHead(200);
-            res.writeBody(data);
-            res.end();
+            res.end(data);
         })
     break;
     default:
