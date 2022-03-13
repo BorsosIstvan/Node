@@ -17,7 +17,7 @@ const server = http.createServer(function(req, res){
                 res.end(file);
             });
             break;
-        case req.url === '/phones' && req.method ==='GET':
+        case req.url === '/qrcodes' && req.method ==='GET':
             fs.readFile('./qrcodes.json', (err, file) =>{
                 res.setHeader('content-type', 'application/json')
                 res.end(file);
