@@ -42,7 +42,7 @@ switch(true){
     break;
     case req.url === '/clients' && req.method === 'GET':
         fs.readFile(__dirname + '/qrcodes.json', function(err, data){
-            res.setHeader('content-type', 'application/json', 'charset = utf-8','Access-Control-Allow-Origin : ./qrcodes.json');
+//            res.setHeader('content-type', 'application/json', 'charset = utf-8');
             res.writeHead(200);
             res.end(data);
         })
