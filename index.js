@@ -35,14 +35,14 @@ switch(true){
     break;
     case req.url === '/login' && req.method === 'GET':
         fs.readFile(__dirname + '/login.html', function(err, data){
-            res.setHeader('content-type', 'application/json', 'charset = utf-8');
+            res.setHeader('content-type', 'text/html', 'charset = utf-8');
             res.writeHead(200);
             res.end(data);
         })
     break;
     case req.url === '/clients' && req.method === 'GET':
         fs.readFile(__dirname + '/qrcodes.json', function(err, data){
-            res.setHeader('content-type', 'text/html', 'charset = utf-8');
+            res.setHeader('content-type', 'application/json', 'charset = utf-8');
             res.writeHead(200);
             res.end(data);
         })
