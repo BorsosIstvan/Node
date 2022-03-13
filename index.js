@@ -29,4 +29,4 @@ const server = http.createServer(function(req, res){
     }
 
 });
-server.listener(8080);
+server.listen(8080);
