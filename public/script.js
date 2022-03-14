@@ -21,6 +21,7 @@ async function fetchAndRenderQrs(){
 // add new qr form action
 document.getElementById('new-qr').onsubmit = async function(event){
     event.preventDefault();
+    console.log('button pressed')
     const name = event.target.elements.name.value;
     const description = event.target.elements.name.value;
     const qrcode = event.target.elements.name.value;
