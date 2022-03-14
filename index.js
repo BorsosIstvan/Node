@@ -24,8 +24,20 @@ const server = http.createServer(function(req, res){
             });
              break;
         case req.url === '/qrcodes' && req.method ==='POST':
+            let body = "";
             req.on('data', function(chunk){
-                console.log(data);
+                body += chunk.toString();
+            });
+            req.on('end',function(){
+                const newQr = JSON.parse(body);
+
+                fs.readFile('./qrcodes.json',(err, data) => {
+                    const qrcodes = JSON.parse(data);
+                    qrcodes.push(newQr);
+                    fs.writeFile('./qrcodes.json', JSON.stringify(qrcodes),()=>{
+                        res.end(JSON.stringify(newQr));
+                    })
+                })
             })
         default:
             res.end('404');
