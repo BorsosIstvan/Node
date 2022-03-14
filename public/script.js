@@ -17,3 +17,23 @@ async function fetchAndRenderQrs(){
 
     document.getElementById('qr-list').innerHTML = qrHTML;
 }
+
+// add new qr form action
+document.getElementById('new-qr').onsubmit = async function(event){
+    event.preventDefault();
+    const name = event.target.elements.name.value;
+    const description = event.target.elements.name.value;
+    const qrcode = event.target.elements.name.value;
+    const res = await fetch("/qrcodes", {
+        method: "POST",
+        headers: {
+            "content-type": "application/json",
+        },
+        body: JSON.stringify({name, description, qrcode})
+    });
+
+    if(res.ok){
+        fetchAndRenderQrs();
+    }
+
+}
