@@ -23,6 +23,10 @@ const server = http.createServer(function(req, res){
                 res.end(file);
             });
              break;
+        case req.url === '/qrcodes' && req.method ==='POST':
+            req.on('data', function(chunk){
+                console.log(data);
+            })
         default:
             res.end('404');
 
